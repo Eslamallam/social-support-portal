@@ -5,5 +5,7 @@
   "arabic": "Arabic",
   "next": "Next",
   "back": "Back",
-  "submit": "Submit"
+  "submit": "Submit",
+  "appSubtitle": "Apply for financial assistance through a secure and guided multi-step application process.",
+  "formPlaceholder": "Multi-step application form will be implemented here."
 }

@@ -12,7 +12,10 @@ export const createAppTheme = (direction: Direction) =>
       },
     },
     typography: {
-      fontFamily: ['Roboto', 'Cairo', 'system-ui', 'sans-serif'].join(','),
+      fontFamily:
+        direction === 'rtl'
+          ? ['Cairo', 'sans-serif'].join(',')
+          : ['Inter', 'sans-serif'].join(','),
     },
     shape: {
       borderRadius: 10,
