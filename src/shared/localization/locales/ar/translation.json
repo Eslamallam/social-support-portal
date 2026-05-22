@@ -19,5 +19,47 @@
     "previous": "السابق",
     "submit": "تقديم الطلب",
     "submitting": "جاري التقديم..."
+  },
+  "personalInfo": {
+    "subtitle": "يرجى إدخال بياناتك الشخصية أدناه.",
+    "fullName": "الاسم الكامل",
+    "nationalId": "رقم الهوية الوطنية",
+    "dateOfBirth": "تاريخ الميلاد",
+    "gender": "الجنس",
+    "genderOptions": {
+      "male": "ذكر",
+      "female": "أنثى"
+    },
+    "address": "العنوان",
+    "city": "المدينة",
+    "state": "المنطقة",
+    "country": "الدولة",
+    "phoneNumber": "رقم الهاتف",
+    "email": "البريد الإلكتروني"
+  },
+  "validation": {
+    "fullName": { "required": "الاسم الكامل مطلوب" },
+    "nationalId": {
+      "required": "رقم الهوية الوطنية مطلوب",
+      "minLength": "يجب أن يتكون رقم الهوية من 5 أحرف على الأقل"
+    },
+    "dateOfBirth": {
+      "required": "تاريخ الميلاد مطلوب",
+      "future": "لا يمكن أن يكون تاريخ الميلاد في المستقبل"
+    },
+    "gender": { "required": "يرجى اختيار الجنس" },
+    "address": { "required": "العنوان مطلوب" },
+    "city": { "required": "المدينة مطلوبة" },
+    "state": { "required": "المنطقة مطلوبة" },
+    "country": { "required": "الدولة مطلوبة" },
+    "phoneNumber": {
+      "required": "رقم الهاتف مطلوب",
+      "invalid": "رقم الهاتف غير صالح",
+      "minDigits": "يجب أن يحتوي رقم الهاتف على 10 أرقام على الأقل"
+    },
+    "email": {
+      "required": "البريد الإلكتروني مطلوب",
+      "invalid": "يرجى إدخال بريد إلكتروني صالح"
+    }
   }
 }

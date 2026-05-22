@@ -1,10 +1,6 @@
 import Typography from '@mui/material/Typography';
 
-const PersonalInfoStep = () => (
-  <Typography color="text.secondary">
-    Personal Information form coming soon.
-  </Typography>
-);
+import { PersonalInfoStep } from '../steps/PersonalInfoStep';
 
 const FinancialInfoStep = () => (
   <Typography color="text.secondary">

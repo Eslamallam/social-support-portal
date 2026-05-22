@@ -19,5 +19,47 @@
     "previous": "Previous",
     "submit": "Submit Application",
     "submitting": "Submitting..."
+  },
+  "personalInfo": {
+    "subtitle": "Please provide your personal details below.",
+    "fullName": "Full Name",
+    "nationalId": "National ID",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "genderOptions": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "phoneNumber": "Phone Number",
+    "email": "Email Address"
+  },
+  "validation": {
+    "fullName": { "required": "Full name is required" },
+    "nationalId": {
+      "required": "National ID is required",
+      "minLength": "National ID must be at least 5 characters"
+    },
+    "dateOfBirth": {
+      "required": "Date of birth is required",
+      "future": "Date of birth cannot be in the future"
+    },
+    "gender": { "required": "Please select a gender" },
+    "address": { "required": "Address is required" },
+    "city": { "required": "City is required" },
+    "state": { "required": "State is required" },
+    "country": { "required": "Country is required" },
+    "phoneNumber": {
+      "required": "Phone number is required",
+      "invalid": "Invalid phone number",
+      "minDigits": "Phone number must contain at least 10 digits"
+    },
+    "email": {
+      "required": "Email is required",
+      "invalid": "Please enter a valid email address"
+    }
   }
 }

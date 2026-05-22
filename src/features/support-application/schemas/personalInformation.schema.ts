@@ -1,29 +1,35 @@
 import { z } from 'zod';
 
 export const personalInformationSchema = z.object({
-  fullName: z.string().min(1, 'Full name is required'),
+  fullName: z.string().min(1, 'validation.fullName.required'),
   nationalId: z
     .string()
-    .min(1, 'National ID is required')
-    .min(5, 'National ID must be at least 5 characters'),
-  dateOfBirth: z.string().min(1, 'Date of birth is required'),
+    .min(1, 'validation.nationalId.required')
+    .min(5, 'validation.nationalId.minLength'),
+  dateOfBirth: z
+    .string()
+    .min(1, 'validation.dateOfBirth.required')
+    .refine(
+      (value) => !value || new Date(value) <= new Date(),
+      'validation.dateOfBirth.future',
+    ),
   gender: z.enum(['male', 'female'], {
-    error: 'Please select a gender',
+    error: 'validation.gender.required',
   }),
-  address: z.string().min(1, 'Address is required'),
-  city: z.string().min(1, 'City is required'),
-  state: z.string().min(1, 'State is required'),
-  country: z.string().min(1, 'Country is required'),
+  address: z.string().min(1, 'validation.address.required'),
+  city: z.string().min(1, 'validation.city.required'),
+  state: z.string().min(1, 'validation.state.required'),
+  country: z.string().min(1, 'validation.country.required'),
   phoneNumber: z
     .string()
-    .min(1, 'Phone number is required')
-    .regex(/^[0-9+\-\s()]+$/, 'Invalid phone number')
+    .min(1, 'validation.phoneNumber.required')
+    .regex(/^[0-9+\-\s()]+$/, 'validation.phoneNumber.invalid')
     .refine(
       (value) => value.replace(/\D/g, '').length >= 10,
-      'Phone number must contain at least 10 digits',
+      'validation.phoneNumber.minDigits',
     ),
   email: z
     .string()
-    .min(1, 'Email is required')
-    .email('Please enter a valid email address'),
+    .min(1, 'validation.email.required')
+    .email('validation.email.invalid'),
 });
