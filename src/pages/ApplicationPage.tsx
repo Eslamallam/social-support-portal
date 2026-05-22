@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { ApplicationFormProvider } from '@/features/support-application/components/ApplicationFormProvider';
+import { FormWizard } from '@/features/support-application/components/FormWizard';
 import {
   APP_BAR_HEIGHT,
   AppLayout,
@@ -44,22 +45,7 @@ export const ApplicationPage = () => {
                 {t('appSubtitle')}
               </Typography>
 
-              <Paper
-                variant="outlined"
-                sx={{
-                  minHeight: 280,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderStyle: 'dashed',
-                  borderRadius: 2,
-                  bgcolor: 'background.default',
-                }}
-              >
-                <Typography variant="body2" color="text.disabled">
-                  {t('formPlaceholder')}
-                </Typography>
-              </Paper>
+              <FormWizard />
             </Stack>
           </ApplicationFormProvider>
         </Paper>

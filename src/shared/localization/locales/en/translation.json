@@ -7,5 +7,17 @@
   "back": "Back",
   "submit": "Submit",
   "appSubtitle": "Apply for financial assistance through a secure and guided multi-step application process.",
-  "formPlaceholder": "Multi-step application form will be implemented here."
+  "formPlaceholder": "Multi-step application form will be implemented here.",
+  "applicationProgress": "Application Progress",
+  "steps": {
+    "personalInfo": "Personal Information",
+    "financialInfo": "Family & Financial",
+    "situationDetails": "Situation Details"
+  },
+  "navigation": {
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit Application",
+    "submitting": "Submitting..."
+  }
 }
