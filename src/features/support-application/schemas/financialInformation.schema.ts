@@ -25,7 +25,7 @@ export const financialInformationSchema = z.object({
           ? 'Monthly income must be a number'
           : undefined,
     })
-    .min(0, 'Monthly income cannot be negative'),
+    .min(6000, 'validation.monthlyIncome.min'),
   housingStatus: z.enum(['owned', 'rented', 'temporary'], {
     error: 'Please select a housing status',
   }),

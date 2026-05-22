@@ -37,6 +37,33 @@
     "phoneNumber": "Phone Number",
     "email": "Email Address"
   },
+  "familyFinancial": {
+    "subtitle": "Please provide your family and financial details below.",
+    "maritalStatus": "Marital Status",
+    "maritalStatusOptions": {
+      "single": "Single",
+      "married": "Married",
+      "divorced": "Divorced",
+      "widowed": "Widowed"
+    },
+    "dependents": "Number of Dependents",
+    "employmentStatus": "Employment Status",
+    "employmentStatusOptions": {
+      "employed": "Employed",
+      "unemployed": "Unemployed",
+      "self-employed": "Self Employed",
+      "student": "Student",
+      "retired": "Retired"
+    },
+    "monthlyIncome": "Monthly Income",
+    "currency": "AED",
+    "housingStatus": "Housing Status",
+    "housingStatusOptions": {
+      "owned": "Owned",
+      "rented": "Rented",
+      "temporary": "Temporary"
+    }
+  },
   "validation": {
     "fullName": { "required": "Full name is required" },
     "nationalId": {
@@ -60,6 +87,9 @@
     "email": {
       "required": "Email is required",
       "invalid": "Please enter a valid email address"
+    },
+    "monthlyIncome": {
+      "min": "Monthly income must be at least AED 6,000"
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Controller, type FieldValues } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -26,6 +27,7 @@ export const FormSelectField = <T extends FieldValues>({
   required,
   options,
 }: FormSelectFieldProps<T>) => {
+  const { t } = useTranslation();
   const labelId = `${String(name)}-label`;
 
   return (
@@ -60,7 +62,7 @@ export const FormSelectField = <T extends FieldValues>({
             ))}
           </Select>
           {fieldState.error?.message ? (
-            <FormHelperText>{fieldState.error.message}</FormHelperText>
+            <FormHelperText>{t(fieldState.error.message)}</FormHelperText>
           ) : null}
         </FormControl>
       )}

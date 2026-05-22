@@ -37,6 +37,33 @@
     "phoneNumber": "رقم الهاتف",
     "email": "البريد الإلكتروني"
   },
+  "familyFinancial": {
+    "subtitle": "يرجى إدخال تفاصيل عائلتك ووضعك المالي أدناه.",
+    "maritalStatus": "الحالة الاجتماعية",
+    "maritalStatusOptions": {
+      "single": "أعزب",
+      "married": "متزوج",
+      "divorced": "مطلق",
+      "widowed": "أرمل"
+    },
+    "dependents": "عدد المعالين",
+    "employmentStatus": "حالة التوظيف",
+    "employmentStatusOptions": {
+      "employed": "موظف",
+      "unemployed": "غير موظف",
+      "self-employed": "يعمل لحسابه الخاص",
+      "student": "طالب",
+      "retired": "متقاعد"
+    },
+    "monthlyIncome": "الدخل الشهري",
+    "currency": "درهم",
+    "housingStatus": "وضع السكن",
+    "housingStatusOptions": {
+      "owned": "مملوك",
+      "rented": "مستأجر",
+      "temporary": "مؤقت"
+    }
+  },
   "validation": {
     "fullName": { "required": "الاسم الكامل مطلوب" },
     "nationalId": {
@@ -60,6 +87,9 @@
     "email": {
       "required": "البريد الإلكتروني مطلوب",
       "invalid": "يرجى إدخال بريد إلكتروني صالح"
+    },
+    "monthlyIncome": {
+      "min": "يجب أن يكون الدخل الشهري 6,000 درهم على الأقل"
     }
   }
 }
