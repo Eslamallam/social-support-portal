@@ -4,15 +4,34 @@ import { FormProvider, useForm } from 'react-hook-form';
 import type { PropsWithChildren } from 'react';
 
 import { defaultValues } from '../constants/defaultValues';
+import { FormWizardContext } from '../contexts/FormWizardContext';
+import {
+  loadSavedFormData,
+  useFormPersistence,
+} from '../hooks/useFormPersistence';
 import { applicationSchema } from '../schemas/application.schema';
 import type { ApplicationFormData } from '../types/application.types';
 
 export const ApplicationFormProvider = ({ children }: PropsWithChildren) => {
+  const savedData = loadSavedFormData();
+
   const methods = useForm<ApplicationFormData>({
     resolver: zodResolver(applicationSchema),
-    defaultValues,
+    defaultValues: savedData
+      ? { ...defaultValues, ...savedData }
+      : defaultValues,
     mode: 'onTouched',
   });
 
-  return <FormProvider {...methods}>{children}</FormProvider>;
+  const { clearSavedData } = useFormPersistence(methods);
+
+  const resetForm = (values: ApplicationFormData = defaultValues) => {
+    methods.reset(values);
+  };
+
+  return (
+    <FormWizardContext.Provider value={{ clearSavedData, resetForm }}>
+      <FormProvider {...methods}>{children}</FormProvider>
+    </FormWizardContext.Provider>
+  );
 };

@@ -8,9 +8,9 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import { getCountryList } from '../../../shared/utils/countries';
-import type { CountryOption } from '../../../shared/utils/countries';
-import { useApplicationForm } from '../hooks/useApplicationForm';
+import { useApplicationForm } from '@/features/support-application/hooks/useApplicationForm';
+import { getCountryList } from '@/shared/utils/countries';
+import type { CountryOption } from '@/shared/utils/countries';
 
 export const PersonalInfoStep = () => {
   const { t, i18n } = useTranslation();
@@ -74,22 +74,28 @@ export const PersonalInfoStep = () => {
 
         {/* Row 3: Gender | Phone Number */}
         <Grid size={{ xs: 12, sm: 6 }}>
-          <TextField
-            label={t('personalInfo.gender')}
-            select
-            defaultValue=""
-            {...register('personalInfo.gender')}
-            error={!!errors.personalInfo?.gender}
-            helperText={te(errors.personalInfo?.gender?.message)}
-            fullWidth
-          >
-            <MenuItem value="male">
-              {t('personalInfo.genderOptions.male')}
-            </MenuItem>
-            <MenuItem value="female">
-              {t('personalInfo.genderOptions.female')}
-            </MenuItem>
-          </TextField>
+          <Controller
+            name="personalInfo.gender"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <TextField
+                label={t('personalInfo.gender')}
+                select
+                {...field}
+                value={field.value ?? ''}
+                error={!!error}
+                helperText={te(error?.message)}
+                fullWidth
+              >
+                <MenuItem value="male">
+                  {t('personalInfo.genderOptions.male')}
+                </MenuItem>
+                <MenuItem value="female">
+                  {t('personalInfo.genderOptions.female')}
+                </MenuItem>
+              </TextField>
+            )}
+          />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
