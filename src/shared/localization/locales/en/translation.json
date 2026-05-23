@@ -7,6 +7,9 @@
   "back": "Back",
   "submit": "Submit",
   "appSubtitle": "Apply for financial assistance through a secure and guided multi-step application process.",
+  "app": {
+    "secureMessage": "Your information is encrypted and secure."
+  },
   "formPlaceholder": "Multi-step application form will be implemented here.",
   "applicationProgress": "Application Progress",
   "steps": {
