@@ -77,6 +77,7 @@ export const PersonalInfoStep = () => {
             control={control}
             label={t('personalInfo.phoneNumber')}
             type="tel"
+            placeholder="+971 50 123 4567"
           />
         </Grid>
 

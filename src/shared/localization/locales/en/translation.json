@@ -83,6 +83,7 @@
     "suggestionHint": "You can edit the suggestion below before accepting it.",
     "editSuggestion": "Edit AI suggestion",
     "accept": "Accept",
+    "regenerate": "Try Again",
     "discard": "Discard",
     "errors": {
       "timeout": "The request timed out. Please try again.",
@@ -91,6 +92,13 @@
       "network": "Network error. Please check your connection.",
       "unknown": "Something went wrong. Please try again."
     }
+  },
+  "form": {
+    "submitting": "Submitting your application...",
+    "submitError": "Something went wrong. Please try again.",
+    "successTitle": "Application Submitted!",
+    "successMessage": "Your application has been received. We will review it and get back to you soon.",
+    "successClose": "Done"
   },
   "validation": {
     "fullName": {

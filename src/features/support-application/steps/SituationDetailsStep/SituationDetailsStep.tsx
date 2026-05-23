@@ -6,8 +6,12 @@ import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import { AISuggestionModal } from '@/features/ai-assistant/components/AISuggestionModal';
-import { useAIAssistant } from '@/features/ai-assistant/hooks/useAIAssistant';
+import {
+  AISuggestionModal,
+  FIELD_PROMPTS_AR,
+  FIELD_PROMPTS_EN,
+  useAIAssistant,
+} from '@/features/ai-assistant';
 
 import { SituationTextField } from '../../components/SituationTextField';
 import { useApplicationForm } from '../../hooks/useApplicationForm';
@@ -19,15 +23,24 @@ export const SituationDetailsStep = () => {
 
   const [activeField, setActiveField] = useState<string | null>(null);
 
-  const { suggestion, isLoading, isModalOpen, requestSuggestion, closeModal } =
-    useAIAssistant();
+  const {
+    suggestion,
+    isLoading,
+    isModalOpen,
+    requestSuggestion,
+    regenerate,
+    closeModal,
+  } = useAIAssistant();
 
   const handleAIAssist = (fieldName: string, currentValue: string) => {
     setActiveField(fieldName);
 
+    const fieldPrompts =
+      i18n.language === 'ar' ? FIELD_PROMPTS_AR : FIELD_PROMPTS_EN;
     const prompt = currentValue.trim()
       ? `I have started writing: "${currentValue}". Please help me improve and expand this for a government assistance application.`
-      : `Help me write a clear description for the "${fieldName.split('.').pop() ?? fieldName}" section of a government financial assistance application.`;
+      : (fieldPrompts[fieldName] ??
+        `Help me write a clear description for the "${fieldName.split('.').pop() ?? fieldName}" section of a government financial assistance application.`);
 
     void requestSuggestion(prompt, fieldName, i18n.language).then(
       ({ error }) => {
@@ -50,6 +63,16 @@ export const SituationDetailsStep = () => {
     }
     closeModal();
     setActiveField(null);
+  };
+
+  const handleRegenerate = () => {
+    void regenerate().then(({ error }) => {
+      if (error) {
+        enqueueSnackbar(t(`aiAssistant.errors.${error}`), {
+          variant: 'error',
+        });
+      }
+    });
   };
 
   const handleDiscard = () => {
@@ -104,6 +127,7 @@ export const SituationDetailsStep = () => {
         suggestion={suggestion}
         onAccept={handleAccept}
         onDiscard={handleDiscard}
+        onRegenerate={handleRegenerate}
       />
     </>
   );

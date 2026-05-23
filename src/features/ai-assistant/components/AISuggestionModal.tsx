@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 
 import AutoAwesomeOutlined from '@mui/icons-material/AutoAwesomeOutlined';
+import RefreshOutlined from '@mui/icons-material/RefreshOutlined';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -35,6 +36,7 @@ interface AISuggestionModalProps {
   suggestion: string;
   onAccept: (text: string) => void;
   onDiscard: () => void;
+  onRegenerate: () => void;
 }
 
 export const AISuggestionModal = ({
@@ -43,6 +45,7 @@ export const AISuggestionModal = ({
   suggestion,
   onAccept,
   onDiscard,
+  onRegenerate,
 }: AISuggestionModalProps) => {
   const { t } = useTranslation();
   const [prevSuggestion, setPrevSuggestion] = useState(suggestion);
@@ -122,7 +125,7 @@ export const AISuggestionModal = ({
         </DialogContent>
       )}
 
-      <DialogActions>
+      <DialogActions sx={{ justifyContent: 'space-between' }}>
         <Button
           onClick={onDiscard}
           color="inherit"
@@ -130,15 +133,27 @@ export const AISuggestionModal = ({
         >
           {t('aiAssistant.discard')}
         </Button>
+
         {suggestion && !isLoading && (
-          <Button
-            onClick={() => onAccept(editedSuggestion)}
-            variant="contained"
-            startIcon={<AutoAwesomeOutlined />}
-            aria-label={t('aiAssistant.accept')}
-          >
-            {t('aiAssistant.accept')}
-          </Button>
+          <Stack direction="row" spacing={1}>
+            <Button
+              onClick={onRegenerate}
+              variant="outlined"
+              startIcon={<RefreshOutlined />}
+              aria-label={t('aiAssistant.regenerate')}
+            >
+              {t('aiAssistant.regenerate')}
+            </Button>
+
+            <Button
+              onClick={() => onAccept(editedSuggestion)}
+              variant="contained"
+              startIcon={<AutoAwesomeOutlined />}
+              aria-label={t('aiAssistant.accept')}
+            >
+              {t('aiAssistant.accept')}
+            </Button>
+          </Stack>
         )}
       </DialogActions>
     </Dialog>

@@ -36,7 +36,7 @@ export const personalInformationSchema = z.object({
   phoneNumber: z
     .string()
     .min(1, 'validation.phoneNumber.required')
-    .regex(/^[0-9+\-\s()]+$/, 'validation.phoneNumber.invalid')
+    .regex(/^\+[1-9]\d{6,14}$/, 'validation.phoneNumber.invalid')
     .refine(
       (value) => value.replace(/\D/g, '').length >= 10,
       'validation.phoneNumber.minDigits',
