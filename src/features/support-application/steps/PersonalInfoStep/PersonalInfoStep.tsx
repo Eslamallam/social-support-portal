@@ -27,9 +27,6 @@ export const PersonalInfoStep = () => {
 
   return (
     <>
-      <Typography variant="h6" component="h2" sx={{ fontWeight: 600 }}>
-        {t('steps.personalInfo')}
-      </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
         {t('personalInfo.subtitle')}
       </Typography>

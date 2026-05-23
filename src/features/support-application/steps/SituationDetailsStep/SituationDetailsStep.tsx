@@ -56,9 +56,9 @@ export const SituationDetailsStep = () => {
   const handleAccept = (text: string) => {
     if (activeField) {
       setValue(activeField as never, text as never, {
-        shouldValidate: false,
-        shouldDirty: false,
-        shouldTouch: false,
+        shouldValidate: true,
+        shouldDirty: true,
+        shouldTouch: true,
       });
     }
     closeModal();
@@ -82,9 +82,6 @@ export const SituationDetailsStep = () => {
 
   return (
     <>
-      <Typography variant="h6" component="h2" sx={{ fontWeight: 600 }}>
-        {t('steps.situationDetails')}
-      </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
         {t('situation.subtitle')}
       </Typography>

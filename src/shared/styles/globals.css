@@ -20,7 +20,8 @@ body,
 
 body {
   font-family:
-    Roboto,
+    'Inter',
+    'Cairo',
     system-ui,
     -apple-system,
     BlinkMacSystemFont,

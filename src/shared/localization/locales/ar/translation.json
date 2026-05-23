@@ -1,5 +1,5 @@
 {
-  "appTitle": "بوابة الدعم الاجتماعي",
+  "appTitle": "بوابة الدعم الإجتماعي",
   "language": "اللغة",
   "english": "الإنجليزية",
   "arabic": "العربية",
@@ -142,6 +142,18 @@
     },
     "monthlyIncome": {
       "min": "الدخل الشهري لا يمكن أن يكون سالباً"
+    },
+    "financialSituation": {
+      "required": "الوضع المالي مطلوب",
+      "minLength": "يرجى تقديم 20 حرفاً على الأقل"
+    },
+    "employmentCircumstances": {
+      "required": "ظروف التوظيف مطلوبة",
+      "minLength": "يرجى تقديم 20 حرفاً على الأقل"
+    },
+    "reasonForApplying": {
+      "required": "سبب التقديم مطلوب",
+      "minLength": "يرجى تقديم 20 حرفاً على الأقل"
     }
   }
 }

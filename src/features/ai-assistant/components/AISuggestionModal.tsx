@@ -125,22 +125,32 @@ export const AISuggestionModal = ({
         </DialogContent>
       )}
 
-      <DialogActions sx={{ justifyContent: 'space-between' }}>
+      <DialogActions
+        sx={{ justifyContent: 'space-between', px: { xs: 2, sm: 3 } }}
+      >
         <Button
           onClick={onDiscard}
           color="inherit"
           aria-label={t('aiAssistant.discard')}
+          sx={{
+            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+            px: { xs: 1, sm: 2 },
+          }}
         >
           {t('aiAssistant.discard')}
         </Button>
 
         {suggestion && !isLoading && (
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }}>
             <Button
               onClick={onRegenerate}
               variant="outlined"
               startIcon={<RefreshOutlined />}
               aria-label={t('aiAssistant.regenerate')}
+              sx={{
+                fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                px: { xs: 1, sm: 2 },
+              }}
             >
               {t('aiAssistant.regenerate')}
             </Button>
@@ -150,6 +160,10 @@ export const AISuggestionModal = ({
               variant="contained"
               startIcon={<AutoAwesomeOutlined />}
               aria-label={t('aiAssistant.accept')}
+              sx={{
+                fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                px: { xs: 1.5, sm: 2 },
+              }}
             >
               {t('aiAssistant.accept')}
             </Button>

@@ -35,9 +35,6 @@ export const FinancialInfoStep = () => {
 
   return (
     <>
-      <Typography variant="h6" component="h2" sx={{ fontWeight: 600 }}>
-        {t('steps.financialInfo')}
-      </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
         {t('familyFinancial.subtitle')}
       </Typography>

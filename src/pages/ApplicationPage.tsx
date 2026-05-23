@@ -20,7 +20,7 @@ export const ApplicationPage = () => {
         maxWidth="md"
         aria-label="Social Support Application"
         sx={{
-          minHeight: '100vh',
+          minHeight: { xs: 'unset', md: '100vh' },
           display: 'flex',
           flexDirection: 'column',
           justifyContent: { xs: 'flex-start', md: 'center' },
@@ -32,7 +32,11 @@ export const ApplicationPage = () => {
             <Typography
               variant="h4"
               component="h1"
-              sx={{ fontWeight: 500, color: 'text.primary' }}
+              sx={{
+                fontWeight: 500,
+                color: 'text.primary',
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' },
+              }}
             >
               {t('appTitle')}
             </Typography>
