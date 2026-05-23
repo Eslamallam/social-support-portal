@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+# Social Support Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A government social support application allowing citizens to apply for financial assistance through a secure, guided multi-step form with AI writing assistance.
 
-Currently, two official plugins are available:
+Built with React 18, TypeScript, Material UI, React Hook Form, and OpenAI GPT-3.5-turbo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 18+
+- pnpm (`npm install -g pnpm`)
+- OpenAI API key ([platform.openai.com](https://platform.openai.com))
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Setup
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Clone the repository:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+git clone https://github.com/Eslamallam/social-support-portal.git
+cd social-support-portal
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactDom from 'eslint-plugin-react-dom';
-import reactX from 'eslint-plugin-react-x';
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+pnpm install
 ```
+
+3. Create a `.env` file from the example:
+
+```bash
+cp .env.example .env
+```
+
+4. Add your OpenAI API key to `.env`:
+
+```
+VITE_OPENAI_API_KEY=your_openai_api_key_here
+```
+
+> The API key must have **Model capabilities** permission enabled.
+> It is only used for the AI writing assistant in Step 3.
+> See [Security](./ARCHITECTURE.md#security) in [ARCHITECTURE.md](./ARCHITECTURE.md) for details.
+
+5. Start the development server:
+
+```bash
+pnpm dev
+```
+
+6. Open [http://localhost:5173](http://localhost:5173)
+
+---
+
+## Scripts
+
+```bash
+pnpm dev        # Start development server
+pnpm build      # Build for production
+pnpm preview    # Preview production build
+pnpm lint       # Run ESLint
+pnpm format     # Run Prettier
+```
+
+---
+
+## Environment Variables
+
+| Variable              | Required | Description                                        |
+| --------------------- | -------- | -------------------------------------------------- |
+| `VITE_OPENAI_API_KEY` | Yes      | OpenAI API key (model capabilities only)           |
+| `VITE_APP_NAME`       | No       | App name override (default: Social Support Portal) |
+
+---
+
+## Documentation
+
+For architecture decisions, project structure, and technical details see [ARCHITECTURE.md](./ARCHITECTURE.md).
