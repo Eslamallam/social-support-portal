@@ -64,11 +64,44 @@
       "temporary": "Temporary"
     }
   },
+  "situation": {
+    "subtitle": "Please describe your current situation. Use the AI assistant to help you write if needed.",
+    "financialSituation": "Current Financial Situation",
+    "employmentCircumstances": "Employment Circumstances",
+    "reasonForApplying": "Reason for Applying"
+  },
+  "aiAssistant": {
+    "title": "AI Writing Assistant",
+    "helpMeWrite": "Help Me Write",
+    "generating": "Generating suggestion...",
+    "thinking": {
+      "analyzing": "Analyzing your situation...",
+      "writing": "Drafting your description...",
+      "refining": "Refining the language...",
+      "almostDone": "Almost ready..."
+    },
+    "suggestionHint": "You can edit the suggestion below before accepting it.",
+    "editSuggestion": "Edit AI suggestion",
+    "accept": "Accept",
+    "discard": "Discard",
+    "errors": {
+      "timeout": "The request timed out. Please try again.",
+      "unauthorized": "Invalid API key. Please contact support.",
+      "rate_limit": "Too many requests. Please wait a moment and try again.",
+      "network": "Network error. Please check your connection.",
+      "unknown": "Something went wrong. Please try again."
+    }
+  },
   "validation": {
-    "fullName": { "required": "Full name is required" },
+    "fullName": {
+      "required": "Full name is required",
+      "minLength": "Full name must be at least 2 characters",
+      "lettersOnly": "Full name must contain only letters"
+    },
     "nationalId": {
       "required": "National ID is required",
-      "minLength": "National ID must be at least 5 characters"
+      "minLength": "National ID must be at least 5 characters",
+      "alphanumeric": "National ID must contain only letters and numbers"
     },
     "dateOfBirth": {
       "required": "Date of birth is required",
@@ -76,8 +109,16 @@
     },
     "gender": { "required": "Please select a gender" },
     "address": { "required": "Address is required" },
-    "city": { "required": "City is required" },
-    "state": { "required": "State is required" },
+    "city": {
+      "required": "City is required",
+      "minLength": "City must be at least 2 characters",
+      "lettersOnly": "City must contain only letters"
+    },
+    "state": {
+      "required": "State is required",
+      "minLength": "State must be at least 2 characters",
+      "lettersOnly": "State must contain only letters"
+    },
     "country": { "required": "Country is required" },
     "phoneNumber": {
       "required": "Phone number is required",
@@ -89,7 +130,7 @@
       "invalid": "Please enter a valid email address"
     },
     "monthlyIncome": {
-      "min": "Monthly income must be at least AED 6,000"
+      "min": "Monthly income cannot be negative"
     }
   }
 }

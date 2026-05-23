@@ -6,9 +6,9 @@ export const AppSnackbarProvider = ({ children }: PropsWithChildren) => {
   return (
     <SnackbarProvider
       maxSnack={3}
-      autoHideDuration={3000}
+      autoHideDuration={5000}
       anchorOrigin={{
-        vertical: 'top',
+        vertical: 'bottom',
         horizontal: 'center',
       }}
     >

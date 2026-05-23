@@ -19,23 +19,27 @@ export const FormWizard = () => {
     isFirstStep,
     isLastStep,
   } = useStepManager();
-  const { clearSavedData } = useFormWizardContext();
+  const { clearSavedData, setHasAttemptedSubmit } = useFormWizardContext();
 
   const onSubmit = async (data: ApplicationFormData) => {
     try {
       console.log('Form submitted:', data);
-      // Mock API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
       clearSavedData();
       reset(defaultValues);
       resetSteps();
+      setHasAttemptedSubmit(false);
     } catch (error) {
       console.error('Submission failed:', error);
     }
   };
 
+  const handleFormSubmit = () => {
+    void handleSubmit(onSubmit)();
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={(e) => e.preventDefault()} noValidate>
       <Stack spacing={4}>
         <ApplicationStepper activeStep={currentStep} />
         <StepRenderer currentStep={currentStep} />
@@ -45,6 +49,7 @@ export const FormWizard = () => {
           isLastStep={isLastStep}
           onNext={goToNext}
           onBack={goToPrevious}
+          onSubmit={handleFormSubmit}
         />
       </Stack>
     </form>

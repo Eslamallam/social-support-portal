@@ -5,6 +5,8 @@ import type { ApplicationFormData } from '../types/application.types';
 export interface FormWizardContextValue {
   clearSavedData: () => void;
   resetForm: (values?: ApplicationFormData) => void;
+  hasAttemptedSubmit: boolean;
+  setHasAttemptedSubmit: (value: boolean) => void;
 }
 
 export const FormWizardContext = createContext<FormWizardContextValue | null>(

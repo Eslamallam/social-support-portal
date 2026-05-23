@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import TextField, { type TextFieldProps } from '@mui/material/TextField';
 
+import { useFormWizardContext } from '@/features/support-application/contexts/FormWizardContext';
+
 import { type BaseFormFieldProps } from './types';
 
 type FormTextFieldType = 'date' | 'email' | 'number' | 'tel' | 'text';
@@ -10,6 +12,9 @@ type FormTextFieldType = 'date' | 'email' | 'number' | 'tel' | 'text';
 type FormTextFieldProps<T extends FieldValues> = BaseFormFieldProps<T> & {
   type?: FormTextFieldType;
   slotProps?: TextFieldProps['slotProps'];
+  multiline?: boolean;
+  rows?: number;
+  hideErrorsUntilSubmit?: boolean;
 };
 
 export const FormTextField = <T extends FieldValues>({
@@ -21,12 +26,13 @@ export const FormTextField = <T extends FieldValues>({
   required,
   type = 'text',
   slotProps,
+  multiline,
+  rows,
+  hideErrorsUntilSubmit = false,
 }: FormTextFieldProps<T>) => {
   const { t } = useTranslation();
+  const { hasAttemptedSubmit } = useFormWizardContext();
 
-  // For date inputs the label must shrink so it doesn't overlap the browser's
-  // native date value. Caller-supplied slotProps are spread after, so any
-  // explicit inputLabel from the caller takes precedence.
   const resolvedSlotProps =
     type === 'date'
       ? ({
@@ -40,15 +46,17 @@ export const FormTextField = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field, fieldState }) => {
-        // Number inputs: native <input type="number"> always yields a string.
-        // We store NaN for an empty field so Zod's invalid_type check catches
-        // it, and display '' so the input appears empty to the user.
         const isNumber = type === 'number';
         const value = isNumber
           ? Number.isNaN(field.value as number)
             ? ''
             : field.value
           : field.value;
+
+        const hasError = Boolean(fieldState.error);
+        const showError = hideErrorsUntilSubmit
+          ? hasError && hasAttemptedSubmit
+          : hasError;
 
         return (
           <TextField
@@ -67,11 +75,13 @@ export const FormTextField = <T extends FieldValues>({
             required={required}
             disabled={disabled}
             type={type}
+            multiline={multiline}
+            rows={rows}
             fullWidth
             variant="outlined"
-            error={Boolean(fieldState.error)}
+            error={showError}
             helperText={
-              fieldState.error?.message
+              showError && fieldState.error?.message
                 ? t(fieldState.error.message)
                 : undefined
             }

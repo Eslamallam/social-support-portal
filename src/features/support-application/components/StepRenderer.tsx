@@ -1,19 +1,22 @@
-import Typography from '@mui/material/Typography';
+import { useEffect } from 'react';
 
 import { FinancialInfoStep } from '@/features/support-application/steps/FinancialInfoStep';
 import { PersonalInfoStep } from '@/features/support-application/steps/PersonalInfoStep';
+import { SituationDetailsStep } from '@/features/support-application/steps/SituationDetailsStep';
 
-const SituationDetailsStep = () => (
-  <Typography color="text.secondary">
-    Situation Details form coming soon.
-  </Typography>
-);
+import { useApplicationForm } from '../hooks/useApplicationForm';
 
 interface StepRendererProps {
   currentStep: number;
 }
 
 export const StepRenderer = ({ currentStep }: StepRendererProps) => {
+  const { clearErrors } = useApplicationForm();
+
+  useEffect(() => {
+    clearErrors();
+  }, [currentStep, clearErrors]);
+
   switch (currentStep) {
     case 0:
       return <PersonalInfoStep />;

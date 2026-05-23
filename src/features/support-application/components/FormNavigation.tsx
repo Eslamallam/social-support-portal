@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
 import { STEP_FIELD_MAP } from '../constants/stepFieldMap';
+import { useFormWizardContext } from '../contexts/FormWizardContext';
 import { useApplicationForm } from '../hooks/useApplicationForm';
 
 interface FormNavigationProps {
@@ -12,6 +13,7 @@ interface FormNavigationProps {
   isLastStep: boolean;
   onNext: () => void;
   onBack: () => void;
+  onSubmit: () => void;
 }
 
 export const FormNavigation = ({
@@ -20,33 +22,42 @@ export const FormNavigation = ({
   isLastStep,
   onNext,
   onBack,
+  onSubmit,
 }: FormNavigationProps) => {
   const { t } = useTranslation();
   const {
     trigger,
-    control,
+    clearErrors,
     formState: { isSubmitting },
   } = useApplicationForm();
+  const { setHasAttemptedSubmit } = useFormWizardContext();
 
   const handleNext = async () => {
     const fieldsToValidate = STEP_FIELD_MAP[currentStep];
-    const hasRegisteredFields = fieldsToValidate.some(
-      (field) => field in (control._fields ?? {}),
-    );
 
-    if (hasRegisteredFields) {
-      const isValid = await trigger(fieldsToValidate);
-      if (!isValid) return;
+    if (!fieldsToValidate) {
+      clearErrors();
+      onNext();
+      return;
     }
 
-    onNext();
+    const isValid = await trigger(fieldsToValidate);
+    if (isValid) {
+      clearErrors();
+      onNext();
+    }
+  };
+
+  const handleBack = () => {
+    clearErrors();
+    onBack();
   };
 
   return (
     <Stack direction="row" sx={{ pt: 2, justifyContent: 'space-between' }}>
       <Button
         variant="outlined"
-        onClick={onBack}
+        onClick={handleBack}
         disabled={isFirstStep}
         aria-label={t('navigation.previous')}
       >
@@ -55,9 +66,13 @@ export const FormNavigation = ({
 
       {isLastStep ? (
         <Button
-          type="submit"
+          type="button"
           variant="contained"
           disabled={isSubmitting}
+          onClick={() => {
+            setHasAttemptedSubmit(true);
+            onSubmit();
+          }}
           aria-label={t('navigation.submit')}
         >
           {isSubmitting ? t('navigation.submitting') : t('navigation.submit')}

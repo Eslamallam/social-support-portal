@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import type { PropsWithChildren } from 'react';
+import { type PropsWithChildren, useState } from 'react';
 
 import { defaultValues } from '../constants/defaultValues';
 import { FormWizardContext } from '../contexts/FormWizardContext';
@@ -21,16 +21,25 @@ export const ApplicationFormProvider = ({ children }: PropsWithChildren) => {
       ? { ...defaultValues, ...savedData }
       : defaultValues,
     mode: 'onTouched',
+    reValidateMode: 'onChange',
   });
 
   const { clearSavedData } = useFormPersistence(methods);
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
 
   const resetForm = (values: ApplicationFormData = defaultValues) => {
     methods.reset(values);
   };
 
   return (
-    <FormWizardContext.Provider value={{ clearSavedData, resetForm }}>
+    <FormWizardContext.Provider
+      value={{
+        clearSavedData,
+        resetForm,
+        hasAttemptedSubmit,
+        setHasAttemptedSubmit,
+      }}
+    >
       <FormProvider {...methods}>{children}</FormProvider>
     </FormWizardContext.Provider>
   );
